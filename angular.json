@@ -1,7 +1,169 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "baf6de64-6714-48a4-b9c9-0ee5c1539ae8"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "datatable-lib": {
+      "projectType": "library",
+      "root": "projects/datatable-lib",
+      "sourceRoot": "projects/datatable-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/datatable-lib/tsconfig.lib.json",
+            "project": "projects/datatable-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/datatable-lib/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/datatable-lib/src/test.ts",
+            "tsConfig": "projects/datatable-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/datatable-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/datatable-lib/tsconfig.lib.json",
+              "projects/datatable-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "app-table": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/app-table",
+      "sourceRoot": "projects/app-table/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/app-table",
+            "index": "projects/app-table/src/index.html",
+            "main": "projects/app-table/src/main.ts",
+            "polyfills": "projects/app-table/src/polyfills.ts",
+            "tsConfig": "projects/app-table/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/app-table/src/favicon.ico",
+              "projects/app-table/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "projects/app-table/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/app-table/src/environments/environment.ts",
+                  "with": "projects/app-table/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "app-table:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "app-table:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "app-table:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/app-table/src/test.ts",
+            "polyfills": "projects/app-table/src/polyfills.ts",
+            "tsConfig": "projects/app-table/tsconfig.spec.json",
+            "karmaConfig": "projects/app-table/karma.conf.js",
+            "assets": [
+              "projects/app-table/src/favicon.ico",
+              "projects/app-table/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "projects/app-table/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/app-table/tsconfig.app.json",
+              "projects/app-table/tsconfig.spec.json",
+              "projects/app-table/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/app-table/e2e/protractor.conf.js",
+            "devServerTarget": "app-table:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "app-table:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "datatable-lib"
 }
