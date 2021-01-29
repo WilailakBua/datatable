@@ -17,9 +17,12 @@ export class DatatableLibComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @Input() data: any;
-  @Input() displayedColumns: any;
+  @Input() displayedColumns: string[];
   @Input() pageIndex: number;
   @Input() pageSize: number;
+  @Input() searchShow: Boolean;
+  @Input() pageSizeOptions: number[];
+
 
   columnsToDisplay: string[];
   homeShow = false;

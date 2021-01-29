@@ -36,11 +36,13 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AppComponent {
   title = 'app-table';
+
   data: PeriodicElement[];
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  
+  pageSizeOptions: number[] = [10, 50,100,500,1000]
   pageIndex = 0;
   pageSize = 100;
+  searchShow = true; 
   constructor() { }
 
   ngOnInit(): void {

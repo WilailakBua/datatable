@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DatatableLibModule } from "datatable-lib";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatatableLibModule } from "datatable-lib";
 import { MaterialModule } from "./material";
 @NgModule({
   declarations: [
@@ -15,7 +14,7 @@ import { MaterialModule } from "./material";
     AppRoutingModule,
     DatatableLibModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

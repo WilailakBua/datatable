@@ -5,9 +5,11 @@ import { MatInputModule } from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginatorModule, MatPaginatorIntl} from '@angular/material/paginator';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatSortModule } from "@angular/material/sort";
+import { getDutchPaginatorIntl } from './dutch-paginator-intl';
+
 @NgModule({
     imports: [
 
@@ -32,6 +34,9 @@ import { MatSortModule } from "@angular/material/sort";
         MatPaginatorModule,
         MatTabsModule,
         MatSortModule
+        ],
+        providers: [
+            {provide: MatPaginatorIntl, useValue: getDutchPaginatorIntl()}
         ],
 
 })
